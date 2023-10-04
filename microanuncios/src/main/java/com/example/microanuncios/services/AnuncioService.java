@@ -76,13 +76,13 @@ public class AnuncioService implements IAnuncioService {
 	}
 	@Override
 	public void updateAnuncio(AnuncioDTO anuncioDTO) {
-		// TODO Auto-generated method stub
-		
+		Anuncio anuncio = new Anuncio(anuncioDTO.getIdAnuncio(), anuncioDTO.getTitulo(), anuncioDTO.getDescripcion(), anuncioDTO.getPrecio(), anuncioDTO.getFechaPublicacion(), anuncioDTO.getCategoria().getIdCategoria(), anuncioDTO.getUsuario().getUser());
+		anuncioRepository.save(anuncio);
 	}
 	@Override
-	public void deleteAnuncio(AnuncioDTO anuncioDTO) {
-		// TODO Auto-generated method stub
-		
+	public void deleteAnuncioByIdAnuncio(int idAnuncio) {
+		Anuncio anuncio = anuncioRepository.findById(idAnuncio).orElse(null);
+		anuncioRepository.delete(anuncio);
 	}
 
 	private AnuncioDTO anuncioModelToDTO(Anuncio anuncio) {

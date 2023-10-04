@@ -59,6 +59,8 @@ public class Anuncio {
 		this.fechaPublicacion = fechaPublicacion;
 		this.categoria = categoria;
 		this.usuario = usuario;
+		this.idCategoria = categoria.getIdCategoria();
+		this.user = usuario.getUser();
 	}
 
 	public Anuncio(int idAnuncio, String titulo, String descripcion, double precio, Date fechaPublicacion,

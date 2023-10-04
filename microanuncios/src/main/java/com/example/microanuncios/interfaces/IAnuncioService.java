@@ -27,6 +27,6 @@ public interface IAnuncioService {
 	
 	public void updateAnuncio(AnuncioDTO anuncioDTO);
 	
-	public void deleteAnuncio(AnuncioDTO anuncioDTO);
+	public void deleteAnuncioByIdAnuncio(int idAnuncio);
 	
 }
