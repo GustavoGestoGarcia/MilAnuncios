@@ -1,5 +1,6 @@
 package com.example.microanuncios.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,22 @@ public class AnuncioController {
 			return ResponseEntity.noContent().build();
 		}
 		return ResponseEntity.ok(anuncioService.getAnuncios());
+	}
+	
+	@GetMapping("/filtrar_precio/{precioMin}/{precioMax}")
+	public ResponseEntity<List<AnuncioDTO>> getAnunciosByPrecio(@PathVariable("precioMin") double precioMin, @PathVariable("precioMax") double precioMax) {
+		if(anuncioService.filterAnunciosByPrecio(precioMin, precioMax) == null || anuncioService.filterAnunciosByPrecio(precioMin, precioMax).size() == 0) {
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(anuncioService.filterAnunciosByPrecio(precioMin, precioMax));
+	}
+	
+	@GetMapping("/filtrar_fecha/{fechaIni}/{fechaFin}")
+	public ResponseEntity<List<AnuncioDTO>> getAnunciosByPrecio(@PathVariable("fechaIni") Date fechaIni, @PathVariable("fechaFin") Date fechaFin) {
+		if(anuncioService.filterAnunciosByFecha(fechaIni, fechaFin) == null || anuncioService.filterAnunciosByFecha(fechaIni, fechaFin).size() == 0) {
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(anuncioService.filterAnunciosByFecha(fechaIni, fechaFin));
 	}
 	
 	@GetMapping("/{idAnuncio}")
